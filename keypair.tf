@@ -1,6 +1,6 @@
 ### Webサーバーで使用するssh鍵の設定
 # ssh鍵の設定
-data "w" "ssh_key" {
+data "template_file" "ssh_key" {
   template = file("/Users/hkobashi/.ssh/id_rsa.pub")
 }
 
