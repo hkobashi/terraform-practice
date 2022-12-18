@@ -202,7 +202,7 @@ resource "aws_security_group_rule" "ingress_rds_3306" {
 
   # 許可するIPの範囲を設定
   # Webサーバーを配置しているサブネットのCIDRを設定
-  cidr_blocks       = ["10.0.2.0/24"]
+  cidr_blocks       = ["10.0.1.0/24"]
 
   # このルールを付与するセキュリティグループを設定
   security_group_id = aws_security_group.rds_sg.id
