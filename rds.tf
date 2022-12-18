@@ -69,3 +69,33 @@ resource "aws_rds_cluster" "aurora_clstr" {
   }
 }
 
+# RDSインスタンス設定
+resource "aws_rds_cluster_instance" "aurora_instance" {
+  count = 2
+  # DB識別子を定義
+  identifier = "aurora-cluster-${count.index}"
+  cluster_identifier = aws_rds_cluster.aurora_clstr.id
+  instance_class = "db.t2.small"
+  apply_immediately = false
+  engine = "aurora-mysql"
+  engine_version = "5.7.mysql_aurora.2.07.2"
+  # 使用するサブネット
+  db_subnet_group_name = aws_db_subnet_group.db_subgrp.name
+  # 使用するパラメータグループ
+  db_parameter_group_name = aws_db_parameter_group.db_pmtgrp.name
+
+  tags = {
+    Name = "aurora-instance"
+    Created_by = "Terraform"
+  }
+}
+
+# endpoint for writing
+output "rds-endpint" {
+  value = aws_rds_cluster.aurora_clstr.endpoint
+}
+
+# endpoint for reading
+output "rds-endpoint-ro" {
+  value = aws_rds_cluster.aurora_clstr.reader_endpoint
+}
