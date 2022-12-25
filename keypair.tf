@@ -1,7 +1,7 @@
 ### Webサーバーで使用するssh鍵の設定
 # ssh鍵の設定
 data "template_file" "ssh_key" {
-  template = file("/Users/hkobashi/.ssh/id_rsa.pub")
+  template = file("/Users/kobashikawahiroshi/.ssh/id_rsa.pub")
 }
 
 resource "aws_key_pair" "auth" {
@@ -13,7 +13,7 @@ resource "aws_key_pair" "auth" {
 ### APサーバーで使用するssh鍵の設定
 # ssh鍵の設定
 data "template_file" "ssh_key_priv" {
-  template = file("/Users/hkobashi/.ssh/id_rsa_priv.pub")
+  template = file("/Users/kobashikawahiroshi/.ssh/id_rsa_priv.pub")
 }
 
 resource "aws_key_pair" "auth_priv" {
