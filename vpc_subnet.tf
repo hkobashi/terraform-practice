@@ -47,3 +47,15 @@ resource "aws_subnet" "dbsub_c" {
     Created_by = "Terraform"
   }
 }
+
+# ALB's subnet
+resource "aws_subnet" "public_c" {
+  vpc_id = aws_vpc.vpc.id
+  cidr_block = "10.0.5.0/24"
+  availability_zone = "ap-northeast-1c"
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "pub-c"
+    Created_by = "Terraform"
+  }
+}
